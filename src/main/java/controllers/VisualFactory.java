@@ -9,7 +9,7 @@ import enums.SimulatorTypes;
 import models.Comensal;
 import services.BufferService;
 import services.MonitorService;
-
+import components.MovimientoCocineroComponent;
 
 public class VisualFactory implements EntityFactory {
 
@@ -52,6 +52,7 @@ public class VisualFactory implements EntityFactory {
                 .from(data)
                 .type(SimulatorTypes.CHEF)
                 .viewWithBBox("chef.png")
+                .with(new MovimientoCocineroComponent(xMin, xMax, yMin, yMax)) // Agregar el componente
                 .build();
     }
 

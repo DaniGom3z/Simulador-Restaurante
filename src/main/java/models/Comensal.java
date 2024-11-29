@@ -1,6 +1,3 @@
-public class Comensal {
-    
-}
 package models;
 
 import com.almasb.fxgl.entity.component.Component;

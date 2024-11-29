@@ -1,6 +1,3 @@
-public class Mesero {
-    
-}
 package models;
 
 import com.almasb.fxgl.entity.Entity;

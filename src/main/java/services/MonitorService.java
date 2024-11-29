@@ -19,9 +19,9 @@ public class MonitorService {
         this.mesasDisponibles = capacidad;
         this.comensalesEsperando = new LinkedList<>();
         this.mesasOcupadas = new boolean[capacidad];
-        this.asignacionesMesas = new HashMap<>(); // Inicializar el mapa
+        this.asignacionesMesas = new HashMap<>();
 
-        // Definir posiciones de las mesas (puedes personalizar estas coordenadas)
+
         this.posicionesMesas = new int[][]{
                 {450, 40}, {630, 40}, {450, 140}, {630, 140},
                 {450, 250}, {630, 250}, {450, 370}, {630, 370},
@@ -44,20 +44,20 @@ public class MonitorService {
                 return i;
             }
         }
-        return -1; // Nunca debería llegar aquí
+        return -1;
     }
 
     public synchronized void liberarMesa(int mesaId) {
         mesasOcupadas[mesaId] = false; // Marcar mesa como disponible
         mesasDisponibles++;
-        asignacionesMesas.entrySet().removeIf(entry -> entry.getValue() == mesaId); // Eliminar asignación
+        asignacionesMesas.entrySet().removeIf(entry -> entry.getValue() == mesaId); // Eliminamos la asignación
         System.out.println("Mesa " + mesaId + " liberada.");
-        notifyAll(); // Notificar a los threads en espera
+        notifyAll(); // Notificamos a los threads en espera
     }
 
     public synchronized int obtenerMesaPorNombre(String comensal) {
         // Devuelve el ID de la mesa asignada al comensal
-        return asignacionesMesas.getOrDefault(comensal, -1); // -1 si no se encuentra
+        return asignacionesMesas.getOrDefault(comensal, -1); // -1 si no se encuentra la mesa
     }
 
     public int[] obtenerPosicionMesa(int mesaId) {

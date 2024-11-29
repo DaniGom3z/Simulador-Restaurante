@@ -19,14 +19,14 @@ public class SimuladorController {
             FXGL.getGameScene().setBackgroundRepeat("fondo.png");
 
             var mesasDisponiblesText = FXGL.getUIFactoryService().newText("", 10);
-            mesasDisponiblesText.setTranslateX(230); // Ajusta según la posición del recepcionista
+            mesasDisponiblesText.setTranslateX(230);
             mesasDisponiblesText.setTranslateY(365);
             FXGL.addUINode(mesasDisponiblesText);
 
-            // Actualizar el texto dinámicamente
+
             FXGL.run(() -> {
                 mesasDisponiblesText.setText("Mesas Disponibles:" + monitorService.mesasDisponibles());
-            }, Duration.seconds(0.5)); // Actualiza cada 0.5 segundos
+            }, Duration.seconds(0.5)); // Actualizamos cada 0.5 segundos
         });
 
         FXGL.spawn("recepcionista", 250, 370);
@@ -34,17 +34,17 @@ public class SimuladorController {
         int numMeseros = (int) Math.ceil(capacidadRestaurante * 0.1);
         int numCocineros = (int) Math.ceil(capacidadRestaurante * 0.15);
 
-        // Crear y ejecutar recepcionista
+        // Creaamos y ejecutamos recepcionista
         Recepcionista recepcionista = new Recepcionista(monitorService);
         new Thread(recepcionista).start();
 
         for (int i = 0; i < numMeseros; i++) {
             final int meseroIndex = i;
 
-            // Generar la entidad visual del mesero
+            // Generamos la entidad visual del mesero
             Entity meseroEntity = FXGL.spawn("mesero", 720 + meseroIndex * 50, 250);
 
-            // Crear el hilo del mesero
+            // Creamos el hilo del mesero
             new Thread(new Mesero("Mesero " + (meseroIndex + 1), monitorService, bufferService, meseroEntity)).start();
         }
 
@@ -60,12 +60,12 @@ public class SimuladorController {
 
 
 
-        // Crear comensales
+        // Creamos comensales
         crearComensales(capacidadRestaurante, tasaLlegada, monitorService, bufferService);
     }
 
     private void crearComensales(int capacidadRestaurante, double tasaLlegada, MonitorService monitorService, BufferService bufferService) {
-        int comensalesTotal = 1; // Cambiar el total de comensales
+        int comensalesTotal = 20;
         double xMin = 200;
         double xMax = 300;
         double yMin = 60;

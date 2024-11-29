@@ -49,7 +49,7 @@ public class Mesero implements Runnable {
 
         if (posicionComensal != null) {
             while (entity.getPosition().distance(posicionComensal) > 5) {
-                entity.translateTowards(posicionComensal, 2); 
+                entity.translateTowards(posicionComensal, 3);
                 try {
                     Thread.sleep(50); 
                 } catch (InterruptedException e) {
@@ -63,7 +63,7 @@ public class Mesero implements Runnable {
         Point2D posicionInicial = new Point2D(720, 250);
 
         while (entity.getPosition().distance(posicionInicial) > 5) {
-            entity.translateTowards(posicionInicial, 2); 
+            entity.translateTowards(posicionInicial, 3);
             try {
                 Thread.sleep(50); 
             } catch (InterruptedException e) {

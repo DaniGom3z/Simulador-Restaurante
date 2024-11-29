@@ -4,6 +4,8 @@ import com.almasb.fxgl.entity.Entity;
 import services.BufferService;
 import components.MovimientoCocineroComponent;
 
+import java.util.concurrent.ThreadLocalRandom;
+
 public class Cocinero implements Runnable {
     private final String name;
     private final BufferService bufferService;
@@ -24,7 +26,8 @@ public class Cocinero implements Runnable {
                     entity.getComponent(MovimientoCocineroComponent.class).setCocinando(true);
 
                     System.out.println(name + " está cocinando la orden de " + order.getCustomerName());
-                    Thread.sleep(3000); 
+                    int tiempoCoccion = ThreadLocalRandom.current().nextInt(3000, 8001);
+                    Thread.sleep(tiempoCoccion);
               
 
                     entity.getComponent(MovimientoCocineroComponent.class).setCocinando(false);
